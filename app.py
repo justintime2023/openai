@@ -21,7 +21,7 @@ def get_openai_response():
     # Set up the headers with the API key
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer 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'
+        'Authorization': f'Bearer {api_key}'
     }
 
     # Define the input parameters for the API
