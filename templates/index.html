@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI API Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>OpenAI API Demo</h1>
+    <form id="question-form">
+        <label for="question">Ask a question:</label>
+        <input type="text" id="question" name="question" required>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Response:</h2>
+    <pre id="response"></pre>
+
+    <script>
+        $(document).ready(function() {
+            $('#question-form').on('submit', function(event) {
+                event.preventDefault();
+                var form_data = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/openai-response',
+                    data: form_data,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#response').text(data.response);
+                    },
+                    error: function() {
+                        $('#response').text('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
